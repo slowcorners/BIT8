@@ -1,6 +1,6 @@
-# The Virtual Machine
+# THE VIRTUAL MACHINE
 
-## Registers
+## REGISTERS
 
 * PC - Virtual Machine Program Counter
 * IP - FORTH Instruction Pointer
@@ -13,6 +13,21 @@
 
 ## INTERFACE TO THE WORLD
 
-```FORTH
-: _SYSCALL ([param ...] SysCallID -- [result ...] Flag) ;
+```
+0 CONSTANT _KEY_
+1 CONSTANT _EMIT_
+2 CONSTANT _QTERM_
+3 CONSTANT _FOPEN_
+4 CONSTANT _FCLOSE_
+5 CONSTANT _FREAD_
+6 CONSTANT _FWRITE_
+7 CONSTANT _BLKRW_
+
+
+
+: SYSCALL ( [param ...] SysCallID -- [result ...] Flag ) ;
+
+: (KEY) ( -- key )   _KEY_ SYSCALL DROP ;
+
+: (EMIT) ( ch -- )   _EMIT_ SYSCALL DROP ;   
 ```
